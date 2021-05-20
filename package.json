@@ -1,0 +1,24 @@
+{
+  "name": "@jpbberry/typed-emitter",
+  "version": "1.0.0",
+  "description": "Event emitter that creates types based off of an interface",
+  "main": "dist/EventEmitter",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpbberry/typed-emitter.git"
+  },
+  "keywords": [
+    "eventemitter",
+    "typescript",
+    "ts"
+  ],
+  "author": "JPBBerry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpbberry/typed-emitter/issues"
+  },
+  "homepage": "https://github.com/jpbberry/typed-emitter#readme"
+}
