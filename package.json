@@ -20,5 +20,6 @@
   "bugs": {
     "url": "https://github.com/jpbberry/typed-emitter/issues"
   },
-  "homepage": "https://github.com/jpbberry/typed-emitter#readme"
+  "homepage": "https://github.com/jpbberry/typed-emitter#readme",
+  "types": "dist/EventEmitter.d.ts"
 }
