@@ -1,6 +1,6 @@
 {
   "name": "@jpbberry/typed-emitter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Event emitter that creates types based off of an interface",
   "main": "dist/EventEmitter",
   "scripts": {

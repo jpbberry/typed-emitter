@@ -6,7 +6,7 @@ interface MapType {
 
 type TypeToData <Value extends any[]|any> = Value extends any[] ? Value : [Value]
 
-type Listener <Value extends any[]|any> = (...data: TypeToData<Value>) => void | Promise<void>
+type Listener <Value extends any[]|any> = (...data: TypeToData<Value>) => void | any
 
 export class EventEmitter<Map extends MapType> extends EM {
   eventNames: <K extends keyof Map>() => (K | symbol)[]
