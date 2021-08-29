@@ -83,3 +83,28 @@ my.emit('MESSAGE', 'Hello world!') // logs "Hello world!"
 ```
 
 *Note you must enable `experimentalDecorators` in your tsconfig for these to work*
+
+### ExtendedEmitter
+
+This library also comes with an ExtendedEmitter for when a developer has made an emitter unavailable to you to extend / overwrite.
+
+It allows you to use the decorators and all the features of the typed emitter while not having full control of the origin emitter
+
+For example
+```ts
+import { ExtendedEmitter } from '@jpbberry/typed-emitter'
+
+class MyOverrides extends ExtendedEmitter {
+  @Event('message') // same concept as before!
+  onMessage (message: Message) {
+    message.channel.send('Hello world!')
+  }
+}
+
+// Now we just instantiate with the previous emitter
+const client = new Client() // this uses the default emitter
+
+new MyOverrides(client) // this adds all of the events that were previously defined via the decorators
+```
+
+You can also use the `applyToEmitter` function if you want to use your own emitting options.

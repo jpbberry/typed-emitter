@@ -1,5 +1,9 @@
-export * from './EventEmitter'
+export * from './emitters/EventEmitter'
+export * from './emitters/ExtendedEmitter'
+
+export * from './utils/applyToEmitter'
+
 export {
   Event,
   Once
-} from './Decorators'
+} from './utils/Decorators'

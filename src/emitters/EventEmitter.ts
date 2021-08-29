@@ -1,5 +1,6 @@
 import { EventEmitter as EM } from 'events'
-import { eventMapper } from './Decorators'
+import { applyToEmitter } from '../utils/applyToEmitter'
+import { eventMapper, EventMapperOptions } from '../utils/Decorators'
 
 interface MapType {
   [key: string]: any|any[]
@@ -9,12 +10,6 @@ type TypeToData <Value extends any[] | any> = Value extends any[] ? Value : [Val
 
 type Listener <Value extends any[] | any> = (...data: TypeToData<Value>) => void | any
 
-export interface EventMapperOptions {
-  event: string
-  method: string
-  type: 'on' | 'once'
-}
-
 export class EventEmitter<Map extends MapType> extends EM {
   [eventMapper]: EventMapperOptions[]
 
@@ -22,12 +17,10 @@ export class EventEmitter<Map extends MapType> extends EM {
     super(opts)
 
     if (this[eventMapper]) {
-      this[eventMapper].forEach(event => {
-        this[event.type](event.event, this[event.method].bind(this))
-      })
+      console.log(this[eventMapper])
+      applyToEmitter(this, this)
     }
   }
-
 
   eventNames: <K extends keyof Map>() => (K | symbol)[]
 
