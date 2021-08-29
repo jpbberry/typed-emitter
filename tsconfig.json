@@ -2,10 +2,11 @@
   "include": ["./src/**/*"],
   "exclude": ["./test"],
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2020",
     "moduleResolution": "node",
     "strictNullChecks": true,
     "declaration": true,
+    "experimentalDecorators": true,
     "strict": false,
     "lib": ["ES6"],
     "module": "commonjs",

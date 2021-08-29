@@ -1,8 +1,8 @@
 {
   "name": "@jpbberry/typed-emitter",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Event emitter that creates types based off of an interface",
-  "main": "dist/EventEmitter",
+  "main": "dist/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,5 +21,8 @@
     "url": "https://github.com/jpbberry/typed-emitter/issues"
   },
   "homepage": "https://github.com/jpbberry/typed-emitter#readme",
-  "types": "dist/EventEmitter.d.ts"
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "typescript": "^4.4.2"
+  }
 }

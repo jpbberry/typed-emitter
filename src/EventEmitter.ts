@@ -1,14 +1,34 @@
 import { EventEmitter as EM } from 'events'
+import { eventMapper } from './Decorators'
 
 interface MapType {
   [key: string]: any|any[]
 }
 
-type TypeToData <Value extends any[]|any> = Value extends any[] ? Value : [Value]
+type TypeToData <Value extends any[] | any> = Value extends any[] ? Value : [Value]
 
-type Listener <Value extends any[]|any> = (...data: TypeToData<Value>) => void | any
+type Listener <Value extends any[] | any> = (...data: TypeToData<Value>) => void | any
+
+export interface EventMapperOptions {
+  event: string
+  method: string
+  type: 'on' | 'once'
+}
 
 export class EventEmitter<Map extends MapType> extends EM {
+  [eventMapper]: EventMapperOptions[]
+
+  constructor (opts?: ConstructorParameters<typeof EM>[0]) {
+    super(opts)
+
+    if (this[eventMapper]) {
+      this[eventMapper].forEach(event => {
+        this[event.type](event.event, this[event.method].bind(this))
+      })
+    }
+  }
+
+
   eventNames: <K extends keyof Map>() => (K | symbol)[]
 
   on: <K extends keyof Map>(event: symbol | K, listener?: Listener<Map[K]>) => this

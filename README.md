@@ -57,3 +57,29 @@ my.on('hello', (one, two) => {
 ```
 
 *Defining an array as something passed to the event just has to be a nested array like `{ hello: [string[]] }`*
+
+## Decorators
+
+As this simply amazing new TypeScript feature begins to gain traction, this library now has support for decorators
+
+Our decorators are `@Event` and `@Once`
+
+You use these by simply defining them in an extending EventEmitter class and passing your event name to them like `@Event('message')`
+
+Here's an example
+```ts
+import { EventEmitter, Event, Once } from '@jpbberry/typed-emitter'
+
+class MyClass extends EventEmitter<{ MESSAGE: string }> {
+  // You can now simply just use the event decorator above any method you want ran on that event
+  @Event('MESSAGE') // Listening to the event MESSAGE
+  receivedMessage (message: string) { // the name of the method does NOT matter at all
+    console.log(message) // logs the paramater!
+  }
+}
+
+const my = new MyClass()
+my.emit('MESSAGE', 'Hello world!') // logs "Hello world!"
+```
+
+*Note you must enable `experimentalDecorators` in your tsconfig for these to work*
