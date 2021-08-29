@@ -106,4 +106,33 @@ const client = new Client() // this uses the default emitter
 MyOverrides.add(client) // this adds all of the events that were previously defined via the decorators
 ```
 
+#### Instiated ExtendedEmitter
+
+Especially useful when passing for example a manager to your event emitter, since you can't do this too well in static classes
+
+A real usecase:
+
+```ts
+import { ExtendedEmitter } from '@jpbberry/typed-emitter'
+
+class MyOverrides extends ExtendedEmitter {
+  // since it's instantiated you can pass whatever you want to the constructor and use it elsewhere
+  constructor (private client: Client) {
+    super()
+  }
+
+  @Event('message')
+  onMessage(msg: Message) { // make sure NOT to make this method static since you're instantiating
+    if (msg.content === 'hello') {
+      client.doSomething('hi!') // you'll have access to this client now
+    }
+  }
+}
+
+const client = new Client()
+
+const overrides = new MyOverrides(client) // pass your options!
+overrides.add(client) // add the new overrides
+```
+
 You can also use the `applyToEmitter` function if you want to use your own emitting options.
