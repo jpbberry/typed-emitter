@@ -17,7 +17,6 @@ export class EventEmitter<Map extends MapType> extends EM {
     super(opts)
 
     if (this[eventMapper]) {
-      console.log(this[eventMapper])
       applyToEmitter(this, this)
     }
   }

@@ -96,15 +96,14 @@ import { ExtendedEmitter } from '@jpbberry/typed-emitter'
 
 class MyOverrides extends ExtendedEmitter {
   @Event('message') // same concept as before!
-  onMessage (message: Message) {
+  static onMessage (message: Message) { // make sure all of your methods are static, we aren't instantiating anything
     message.channel.send('Hello world!')
   }
 }
 
 // Now we just instantiate with the previous emitter
 const client = new Client() // this uses the default emitter
-
-new MyOverrides(client) // this adds all of the events that were previously defined via the decorators
+MyOverrides.add(client) // this adds all of the events that were previously defined via the decorators
 ```
 
 You can also use the `applyToEmitter` function if you want to use your own emitting options.

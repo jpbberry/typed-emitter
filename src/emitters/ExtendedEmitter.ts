@@ -4,9 +4,9 @@ import { eventMapper, EventMapperOptions } from '../utils/Decorators'
 import { EventEmitter } from 'events'
 
 export class ExtendedEmitter {
-  [eventMapper]: EventMapperOptions[]
+  static [eventMapper]: EventMapperOptions[]
 
-  constructor (emitter: EventEmitter) {
+  static add (emitter: EventEmitter) {
     applyToEmitter(emitter, this[eventMapper].map(x => ({ ...x, method: this[String(x.method)].bind(this) })))
   }
 }
